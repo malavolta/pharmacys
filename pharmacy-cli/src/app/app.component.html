@@ -1,0 +1,57 @@
+<div class="py-5" *ngIf="undefined === pharmacys">
+  <div class="d-flex justify-content-center">
+    <div class="spinner-border" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
+  </div>
+</div>
+<div *ngIf="undefined !== pharmacys">
+  <div class="container">
+    <div class="py-4 col-md-8 order-md-1">
+      <h4 class="mb-3">Farmacias Abiertas</h4>
+      <form [formGroup]="profileForm" (ngSubmit)="onSubmit()" class="needs-validation" novalidate="">
+
+        <div class="row">
+          <div class="col-md-5 mb-3">
+            <label for="cc-name">Nombre de la Farmacias</label>
+            <input formControlName="nombrelocal" type="text" class="form-control" id="cc-name" placeholder="" required="">
+            <div class="invalid-feedback">
+              Nombre de la farmacias es requerido
+            </div>
+          </div>
+          <div class="col-md-5 mb-3">
+            <label for="country">Comunas</label>
+            <select formControlName="comuna"  class="custom-select d-block w-100" id="country" required="">
+              <option value='0' selected>Elija Comuna</option><option value='82'>ALHUE</option><option value='83'>BUIN</option><option value='84'>CALERA DE TANGO</option><option value='85'>CERRILLOS</option><option value='86'>CERRO NAVIA</option><option value='87'>COLINA</option><option value='88'>CONCHALI</option><option value='89'>CURACAVI</option><option value='90'>EL BOSQUE</option><option value='91'>EL MONTE</option><option value='92'>ESTACION CENTRAL</option><option value='93'>HUECHURABA</option><option value='94'>INDEPENDENCIA</option><option value='95'>ISLA DE MAIPO</option><option value='96'>LA CISTERNA</option><option value='97'>LA FLORIDA</option><option value='98'>LA GRANJA</option><option value='99'>LA PINTANA</option><option value='100'>LA REINA</option><option value='101'>LAMPA</option><option value='102'>LAS CONDES</option><option value='103'>LO BARNECHEA</option><option value='104'>LO ESPEJO</option><option value='105'>LO PRADO</option><option value='106'>MACUL</option><option value='107'>MAIPU</option><option value='108'>MARIA PINTO</option><option value='109'>MELIPILLA</option><option value='110'>&Ntilde;U&Ntilde;OA</option><option value='111'>PADRE HURTADO</option><option value='112'>PAINE</option><option value='113'>PEDRO AGUIRRE CERDA</option><option value='114'>PE&Ntilde;AFLOR</option><option value='115'>PE&Ntilde;ALOLEN</option><option value='116'>PIRQUE</option><option value='117'>PROVIDENCIA</option><option value='118'>PUDAHUEL</option><option value='119'>PUENTE ALTO</option><option value='120'>QUILICURA</option><option value='121'>QUINTA NORMAL</option><option value='122'>RECOLETA</option><option value='123'>RENCA</option><option value='124'>SAN BERNARDO</option><option value='125'>SAN JOAQUIN</option><option value='126'>SAN JOSE DE MAIPO</option><option value='127'>SAN MIGUEL</option><option value='128'>SAN PEDRO</option><option value='129'>SAN RAMON</option><option value='130'>SANTIAGO</option><option value='133'>TALAGANTE</option><option value='134'>TIL-TIL</option><option value='135'>VITACURA</option>
+            </select>
+            <div class="invalid-feedback">
+              Please select a valid country.
+            </div>
+          </div>
+          </div>
+
+          <button  class="btn btn-primary btn-md btn-block" type="submit" [disabled]="!profileForm.valid">Submit</button>
+
+      </form>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4" *ngFor="let pharmacy of pharmacysFilter">
+        <div class="card mb-4 shadow-sm" style="width: 18rem;">
+          <div class="card-body">
+            <h5 class="card-title">{{pharmacy.local_nombre}}</h5>
+            <h6 class="card-subtitle mb-2 text-muted">Detalle</h6>
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item">Hora Apertura: {{pharmacy.funcionamiento_hora_apertura}}</li>
+                <li class="list-group-item">Hora Cierre: {{pharmacy.funcionamiento_hora_cierre}}</li>
+                <li class="list-group-item">Direccion: {{pharmacy.local_direccion}}</li>
+              </ul>
+          </div>
+        </div>        
+      </div>
+    </div>
+  </div>
+</div>
+<router-outlet></router-outlet>

@@ -1,0 +1,16 @@
+# Defines our composer file version
+version: "2.2"
+# Define our services
+services:
+  # This is our nodejs app built using the Dockerfile
+  app:
+    # The name of our node app container
+    container_name: docker_angular_app
+    # Restarts our node app whenever it fails
+    restart: always
+    # Builds the node app docker container from the local -
+    # Docker file we created
+    build: .
+    # Exposes the necessary ports that our node app uses
+    ports:
+      - "4200:4200"

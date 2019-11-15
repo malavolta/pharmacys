@@ -1,0 +1,32 @@
+{
+    "name": "pharmacy-server",
+    "version": "1.0.0",
+    "description": "Obtener Farmacias de turno por comuna en la region metropolitana de chile",
+    "main": "server.js",
+    "scripts": {
+        "start-dev": "DEBUG=pharmacy:* nodemon server.js",
+        "start": "NODE_ENV=production node server.js",
+        "lint": "standard"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+ssh://git@github.com/malavolta/pharmacy.git"
+    },
+    "author": "Antonio Malavolta",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/malavolta/pharmacy/issues"
+    },
+    "homepage": "https://github.com/malavolta/pharmacy#readme",
+    "dependencies": {
+        "express": "^4.17.1",
+        "request": "^2.88.0",
+        "request-promise": "^4.2.5",
+        "request-promise-native": "^1.0.8",
+        "standard": "^14.3.1"
+    },
+    "devDependencies": {
+        "debug": "^4.1.1",
+        "nodemon": "^1.19.4"
+    }
+}
