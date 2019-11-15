@@ -1,19 +1,18 @@
-# base image
-FROM node
+FROM node:10-alpine
 
-# set working directory
-WORKDIR /app
+# Create an app directory to hold the application code
+WORKDIR /usr/src/app
 
-# add `/app/node_modules/.bin` to $PATH
-ENV PATH /app/node_modules/.bin:$PATH
+COPY package*.json ./
 
-# install and cache app dependencies
-COPY package.json /app/package.json
+# Install app dependencies
 RUN npm install
-RUN npm install -g @angular/cli
 
-# add app
-COPY . /app
+# Bundle app source inside the docker image
+COPY . .
 
-# start app
-CMD ng serve --host 0.0.0.0
+RUN npm run postinstall
+
+COPY . .
+
+CMD ["node", "server.js"]
